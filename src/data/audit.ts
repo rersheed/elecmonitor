@@ -1,0 +1,312 @@
+import type { AuditEntry } from '../types'
+
+export const auditLog: AuditEntry[] = [
+  {
+    "id": "AUD-0001",
+    "timestamp": "2026-09-30T21:49:56.488894+01:00",
+    "actor": "Amina Yusuf",
+    "actorId": "USR-001",
+    "action": "Updated verification status",
+    "recordType": "Incident",
+    "recordId": "INC/KD/CHIKUN/2026/00401",
+    "oldValue": "Submitted",
+    "newValue": "Verified"
+  },
+  {
+    "id": "AUD-0018",
+    "timestamp": "2026-09-30T20:33:48.971313+01:00",
+    "actor": "Tunde Adeyemi",
+    "actorId": "USR-004",
+    "action": "Assigned incident",
+    "recordType": "User",
+    "recordId": "USR-005",
+    "oldValue": "Open",
+    "newValue": "Verifier"
+  },
+  {
+    "id": "AUD-0015",
+    "timestamp": "2026-09-30T19:10:42.102725+01:00",
+    "actor": "Amina Yusuf",
+    "actorId": "USR-001",
+    "action": "Escalated incident",
+    "recordType": "User",
+    "recordId": "USR-002",
+    "oldValue": "Analyst",
+    "newValue": "Needs Clarification"
+  },
+  {
+    "id": "AUD-0012",
+    "timestamp": "2026-09-30T17:55:34.169913+01:00",
+    "actor": "Kelechi Nnamdi",
+    "actorId": "USR-012",
+    "action": "Changed user role",
+    "recordType": "User",
+    "recordId": "USR-013",
+    "oldValue": "Active",
+    "newValue": "Investigating"
+  },
+  {
+    "id": "AUD-0019",
+    "timestamp": "2026-09-30T16:55:36.152635+01:00",
+    "actor": "Blessing Nwosu",
+    "actorId": "USR-005",
+    "action": "Archived report",
+    "recordType": "Incident",
+    "recordId": "INC/LA/ALIM/2026/00419",
+    "oldValue": "Analyst",
+    "newValue": "Inactive"
+  },
+  {
+    "id": "AUD-0010",
+    "timestamp": "2026-09-30T15:05:30.955344+01:00",
+    "actor": "Ifeanyi Eze",
+    "actorId": "USR-010",
+    "action": "Assigned incident",
+    "recordType": "Incident",
+    "recordId": "INC/RI/OBIO/2026/00410",
+    "oldValue": "Open",
+    "newValue": "Needs Clarification"
+  },
+  {
+    "id": "AUD-0004",
+    "timestamp": "2026-09-30T14:37:45.950048+01:00",
+    "actor": "Tunde Adeyemi",
+    "actorId": "USR-004",
+    "action": "Changed user role",
+    "recordType": "Incident",
+    "recordId": "INC/KD/KD-NORTH/2026/00404",
+    "oldValue": "Active",
+    "newValue": "Inactive"
+  },
+  {
+    "id": "AUD-0025",
+    "timestamp": "2026-09-30T13:51:07.411822+01:00",
+    "actor": "Maryam Abdullahi",
+    "actorId": "USR-011",
+    "action": "Updated verification status",
+    "recordType": "Incident",
+    "recordId": "INC/KD/KD-NORTH/2026/00405",
+    "oldValue": "Submitted",
+    "newValue": "Needs Clarification"
+  },
+  {
+    "id": "AUD-0013",
+    "timestamp": "2026-09-30T12:07:18.448145+01:00",
+    "actor": "Rahama Garba",
+    "actorId": "USR-013",
+    "action": "Updated settings",
+    "recordType": "Incident",
+    "recordId": "INC/KD/KD-SOUTH/2026/00413",
+    "oldValue": "Submitted",
+    "newValue": "Verifier"
+  },
+  {
+    "id": "AUD-0021",
+    "timestamp": "2026-09-30T05:06:18.699605+01:00",
+    "actor": "Funke Balogun",
+    "actorId": "USR-007",
+    "action": "Updated settings",
+    "recordType": "User",
+    "recordId": "USR-008",
+    "oldValue": "Submitted",
+    "newValue": "Verified"
+  },
+  {
+    "id": "AUD-0026",
+    "timestamp": "2026-09-30T04:30:27.376540+01:00",
+    "actor": "Kelechi Nnamdi",
+    "actorId": "USR-012",
+    "action": "Assigned incident",
+    "recordType": "Report",
+    "recordId": "RPT/KD/2026/00112",
+    "oldValue": "Open",
+    "newValue": "Verified"
+  },
+  {
+    "id": "AUD-0023",
+    "timestamp": "2026-09-30T04:18:56.134075+01:00",
+    "actor": "Zainab Mohammed",
+    "actorId": "USR-009",
+    "action": "Escalated incident",
+    "recordType": "Report",
+    "recordId": "RPT/KD/2026/00110",
+    "oldValue": "Analyst",
+    "newValue": "Verifier"
+  },
+  {
+    "id": "AUD-0022",
+    "timestamp": "2026-09-30T01:36:20.779166+01:00",
+    "actor": "Emeka Okafor",
+    "actorId": "USR-008",
+    "action": "Added evidence link",
+    "recordType": "Incident",
+    "recordId": "INC/KD/CHIKUN/2026/00402",
+    "oldValue": "Open",
+    "newValue": "Investigating"
+  },
+  {
+    "id": "AUD-0027",
+    "timestamp": "2026-09-30T00:54:24.892879+01:00",
+    "actor": "Rahama Garba",
+    "actorId": "USR-013",
+    "action": "Archived report",
+    "recordType": "User",
+    "recordId": "USR-014",
+    "oldValue": "Analyst",
+    "newValue": "Investigating"
+  },
+  {
+    "id": "AUD-0009",
+    "timestamp": "2026-09-30T00:32:48.822068+01:00",
+    "actor": "Zainab Mohammed",
+    "actorId": "USR-009",
+    "action": "Updated verification status",
+    "recordType": "User",
+    "recordId": "USR-010",
+    "oldValue": "Submitted",
+    "newValue": "Inactive"
+  },
+  {
+    "id": "AUD-0014",
+    "timestamp": "2026-09-29T21:29:43.465406+01:00",
+    "actor": "Obinna Chukwu",
+    "actorId": "USR-014",
+    "action": "Added evidence link",
+    "recordType": "Report",
+    "recordId": "RPT/RI/2026/00034",
+    "oldValue": "Open",
+    "newValue": "Inactive"
+  },
+  {
+    "id": "AUD-0002",
+    "timestamp": "2026-09-29T20:15:03.468725+01:00",
+    "actor": "Chinedu Okoro",
+    "actorId": "USR-002",
+    "action": "Assigned incident",
+    "recordType": "Report",
+    "recordId": "RPT/RI/2026/00031",
+    "oldValue": "Open",
+    "newValue": "Investigating"
+  },
+  {
+    "id": "AUD-0028",
+    "timestamp": "2026-09-29T18:31:52.981826+01:00",
+    "actor": "Obinna Chukwu",
+    "actorId": "USR-014",
+    "action": "Changed user role",
+    "recordType": "Incident",
+    "recordId": "INC/RI/OBIO/2026/00408",
+    "oldValue": "Active",
+    "newValue": "Verifier"
+  },
+  {
+    "id": "AUD-0006",
+    "timestamp": "2026-09-29T18:26:24.124034+01:00",
+    "actor": "Sani Bello",
+    "actorId": "USR-006",
+    "action": "Added evidence link",
+    "recordType": "User",
+    "recordId": "USR-007",
+    "oldValue": "Open",
+    "newValue": "Verified"
+  },
+  {
+    "id": "AUD-0020",
+    "timestamp": "2026-09-29T18:06:11.807610+01:00",
+    "actor": "Sani Bello",
+    "actorId": "USR-006",
+    "action": "Changed user role",
+    "recordType": "Report",
+    "recordId": "RPT/RI/2026/00036",
+    "oldValue": "Active",
+    "newValue": "Needs Clarification"
+  },
+  {
+    "id": "AUD-0024",
+    "timestamp": "2026-09-29T17:09:30.776316+01:00",
+    "actor": "Ifeanyi Eze",
+    "actorId": "USR-010",
+    "action": "Cleared filter preset",
+    "recordType": "User",
+    "recordId": "USR-011",
+    "oldValue": "Active",
+    "newValue": "Inactive"
+  },
+  {
+    "id": "AUD-0011",
+    "timestamp": "2026-09-29T17:00:14.619076+01:00",
+    "actor": "Maryam Abdullahi",
+    "actorId": "USR-011",
+    "action": "Archived report",
+    "recordType": "Report",
+    "recordId": "RPT/RI/2026/00033",
+    "oldValue": "Analyst",
+    "newValue": "Verified"
+  },
+  {
+    "id": "AUD-0007",
+    "timestamp": "2026-09-29T15:15:09.715894+01:00",
+    "actor": "Funke Balogun",
+    "actorId": "USR-007",
+    "action": "Escalated incident",
+    "recordType": "Incident",
+    "recordId": "INC/LA/ALIM/2026/00407",
+    "oldValue": "Analyst",
+    "newValue": "Investigating"
+  },
+  {
+    "id": "AUD-0008",
+    "timestamp": "2026-09-29T14:23:33.934502+01:00",
+    "actor": "Emeka Okafor",
+    "actorId": "USR-008",
+    "action": "Cleared filter preset",
+    "recordType": "Report",
+    "recordId": "RPT/LA/2026/00044",
+    "oldValue": "Active",
+    "newValue": "Verifier"
+  },
+  {
+    "id": "AUD-0016",
+    "timestamp": "2026-09-29T14:11:10.848614+01:00",
+    "actor": "Chinedu Okoro",
+    "actorId": "USR-002",
+    "action": "Cleared filter preset",
+    "recordType": "Incident",
+    "recordId": "INC/KD/KD-NORTH/2026/00416",
+    "oldValue": "Active",
+    "newValue": "Verified"
+  },
+  {
+    "id": "AUD-0017",
+    "timestamp": "2026-09-29T10:52:06.094500+01:00",
+    "actor": "Hauwa Ibrahim",
+    "actorId": "USR-003",
+    "action": "Updated verification status",
+    "recordType": "Report",
+    "recordId": "RPT/LA/2026/00046",
+    "oldValue": "Submitted",
+    "newValue": "Investigating"
+  },
+  {
+    "id": "AUD-0005",
+    "timestamp": "2026-09-29T10:49:31.091514+01:00",
+    "actor": "Blessing Nwosu",
+    "actorId": "USR-005",
+    "action": "Updated settings",
+    "recordType": "Report",
+    "recordId": "RPT/LA/2026/00042",
+    "oldValue": "Submitted",
+    "newValue": "Needs Clarification"
+  },
+  {
+    "id": "AUD-0003",
+    "timestamp": "2026-09-29T10:44:32.624945+01:00",
+    "actor": "Hauwa Ibrahim",
+    "actorId": "USR-003",
+    "action": "Archived report",
+    "recordType": "User",
+    "recordId": "USR-004",
+    "oldValue": "Analyst",
+    "newValue": "Verifier"
+  }
+]
