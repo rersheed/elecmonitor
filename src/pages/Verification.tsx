@@ -1,16 +1,19 @@
 import { useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
+import { Check, X, Swords, HelpCircle } from 'lucide-react'
 import { VerificationBadge } from '../components/ui/StatusBadge'
 import { EmptyState } from '../components/ui/EmptyState'
-import { reports, evidence } from '../data'
+import { evidence, results } from '../data'
+import { parties, resultPartySlots } from '../data/elections'
 import { locationPath } from '../data/geography'
 import { fmtDateTime } from '../utils/format'
 import { useDataFreshness } from '../hooks/useDataFreshness'
+import { useDemoState } from '../context/DemoState'
 import type { VerificationStatus } from '../types'
 
-type Tab = 'Pending' | 'Needs Clarification' | 'Verified' | 'Rejected'
+type Tab = 'Pending' | 'Needs Clarification' | 'Verified' | 'Rejected' | 'Contested'
 
-const tabs: Tab[] = ['Pending', 'Needs Clarification', 'Verified', 'Rejected']
+const tabs: Tab[] = ['Pending', 'Needs Clarification', 'Verified', 'Rejected', 'Contested']
 
 function matchesTab(status: VerificationStatus, tab: Tab) {
   if (tab === 'Pending') return status === 'Submitted' || status === 'Under Review'
@@ -21,8 +24,10 @@ export function Verification() {
   const [params, setParams] = useSearchParams()
   const tab = (params.get('tab') as Tab) || 'Pending'
   const q = params.get('q') || ''
-  const { label } = useDataFreshness()
+  const { reports, setVerification, controls } = useDemoState()
+  const { label } = useDataFreshness(controls.syncIntervalSec * 100)
   const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [toast, setToast] = useState<string | null>(null)
 
   const queue = useMemo(() => {
     return reports.filter((r) => {
@@ -30,18 +35,57 @@ export function Verification() {
       if (q && !r.id.toLowerCase().includes(q.toLowerCase())) return false
       return true
     })
-  }, [tab, q])
+  }, [tab, q, reports])
 
   const selected = reports.find((r) => r.id === (selectedId || queue[0]?.id)) || null
   const evid = selected ? evidence.filter((e) => selected.evidenceIds.includes(e.id)) : []
+
+  const linkedResult = useMemo(() => {
+    if (!selected) return null
+    if (selected.linkedResultId) {
+      return results.find((r) => r.id === selected.linkedResultId) || null
+    }
+    // Heuristic: same ward + result category or “Result” in category
+    const isResultish = /result|form ec|collation|vote/i.test(selected.category)
+    if (!isResultish) {
+      // Still show a nearby result for demo depth on some reports
+      return results.find((r) => r.location.wardId === selected.location.wardId) || null
+    }
+    return results.find((r) => r.location.wardId === selected.location.wardId) || results[0] || null
+  }, [selected])
+
+  const voteBreakdown = useMemo(() => {
+    if (!linkedResult) return null
+    const total =
+      linkedResult.partyA + linkedResult.partyB + linkedResult.partyC + linkedResult.partyD || 1
+    return resultPartySlots.map((slot) => {
+      const votes = linkedResult[slot.key]
+      const party = parties.find((p) => p.id === slot.partyId)!
+      return {
+        abbrev: party.abbrev,
+        name: party.name,
+        color: party.color,
+        votes,
+        share: Math.round((votes / total) * 100),
+      }
+    })
+  }, [linkedResult])
+
+  function act(status: VerificationStatus) {
+    if (!selected) return
+    setVerification(selected.id, status)
+    setToast(`${selected.id} → ${status}`)
+    window.setTimeout(() => setToast(null), 2500)
+  }
 
   return (
     <div>
       <div className="page-header">
         <div>
           <h1>Verification</h1>
-          <p className="subtitle">Queue for field reports · Reported vs Verified · {label}</p>
+          <p className="subtitle">Queue for field reports · Approve / Reject / Contest · {label}</p>
         </div>
+        {toast && <div className="toast-inline">{toast}</div>}
       </div>
       <div className="tabs" role="tablist">
         {tabs.map((t) => {
@@ -109,7 +153,23 @@ export function Verification() {
               <p style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 0 }}>
                 {locationPath(selected.location)} · {fmtDateTime(selected.timestamp)}
               </p>
-              <div className="verify-split">
+
+              <div className="verify-actions">
+                <button type="button" className="btn btn-sm btn-primary" onClick={() => act('Verified')}>
+                  <Check size={14} /> Approve
+                </button>
+                <button type="button" className="btn btn-sm btn-danger" onClick={() => act('Rejected')}>
+                  <X size={14} /> Reject
+                </button>
+                <button type="button" className="btn btn-sm" onClick={() => act('Contested')}>
+                  <Swords size={14} /> Contest
+                </button>
+                <button type="button" className="btn btn-sm btn-secondary" onClick={() => act('Needs Clarification')}>
+                  <HelpCircle size={14} /> Needs Clarification
+                </button>
+              </div>
+
+              <div className="verify-split" style={{ marginTop: 16 }}>
                 <div className="verify-col">
                   <h3>Reported</h3>
                   <div className="reported-block">
@@ -135,12 +195,42 @@ export function Verification() {
                       </>
                     ) : (
                       <p style={{ margin: 0, color: 'var(--text-muted)' }}>
-                        Not yet verified — awaiting situation room review.
+                        Not yet verified — use actions above.
                       </p>
                     )}
                   </div>
                 </div>
               </div>
+
+              {voteBreakdown && linkedResult && (
+                <div style={{ marginTop: 16 }}>
+                  <h3 style={{ fontSize: 13, color: 'var(--text-muted)', marginBottom: 8 }}>
+                    Vote breakdown · {linkedResult.id} · {linkedResult.puName}
+                  </h3>
+                  <div className="vote-breakdown">
+                    {voteBreakdown.map((v) => (
+                      <div key={v.abbrev} className="vote-row">
+                        <div className="vote-label">
+                          <span className="swatch" style={{ background: v.color }} />
+                          <strong>{v.abbrev}</strong>
+                          <span style={{ color: 'var(--text-muted)', fontSize: 12 }}>{v.name}</span>
+                        </div>
+                        <div className="vote-bar-track">
+                          <div className="vote-bar-fill" style={{ width: `${v.share}%`, background: v.color }} />
+                        </div>
+                        <div className="mono vote-nums">
+                          {v.votes} · {v.share}%
+                        </div>
+                      </div>
+                    ))}
+                    <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 8 }}>
+                      Invalid {linkedResult.invalid} · Accredited {linkedResult.totalAccredited} · Status{' '}
+                      {linkedResult.status}
+                    </div>
+                  </div>
+                </div>
+              )}
+
               <h3 style={{ fontSize: 13, marginTop: 16, color: 'var(--text-muted)' }}>Evidence</h3>
               {evid.length === 0 ? (
                 <p style={{ color: 'var(--text-muted)' }}>No evidence attached.</p>

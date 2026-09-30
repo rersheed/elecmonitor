@@ -13,18 +13,18 @@ import { GeoMap } from '../components/map/GeoMap'
 import { useDataFreshness, useLiveClock } from '../hooks/useDataFreshness'
 import { fmtClock, fmtRelative, fmtDateTime } from '../utils/format'
 import {
-  reports,
   incidents,
-  agents,
   activityFeed,
   allPollingUnits,
   geography,
 } from '../data'
+import { useDemoState } from '../context/DemoState'
 import { shortPath } from '../data/geography'
 
 export function Overview() {
   const navigate = useNavigate()
-  const { label } = useDataFreshness()
+  const { reports, agents, controls } = useDemoState()
+  const { label } = useDataFreshness(controls.syncIntervalSec * 100)
   const now = useLiveClock()
   const totalPUs = allPollingUnits().length
   const reportingLocations = new Set(reports.map((r) => r.location.puId || r.location.wardId)).size

@@ -60,10 +60,10 @@ export function Results() {
                 <th>ID</th>
                 <th>Polling unit</th>
                 <th>Location</th>
-                <th>Party A</th>
-                <th>Party B</th>
-                <th>Party C</th>
-                <th>Party D</th>
+                <th>APC</th>
+                <th>PDP</th>
+                <th>NNPP</th>
+                <th>LP</th>
                 <th>Invalid</th>
                 <th>Accredited</th>
                 <th>Status</th>

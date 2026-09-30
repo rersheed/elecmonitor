@@ -4,6 +4,7 @@ export type VerificationStatus =
   | 'Verified'
   | 'Rejected'
   | 'Needs Clarification'
+  | 'Contested'
 
 export type IncidentStatus = 'Open' | 'Investigating' | 'Resolved' | 'Escalated' | 'Closed'
 export type AgentStatus = 'Active' | 'Offline' | 'On Leave' | 'Suspended'
@@ -17,6 +18,10 @@ export type UserRole =
   | 'Verifier'
   | 'Field Agent'
   | 'Read-only Observer'
+
+export type ElectionStatus = 'Upcoming' | 'Active' | 'Completed' | 'Archived'
+export type AnomalyReviewStatus = 'Open' | 'Reviewed' | 'Dismissed' | 'Escalated'
+export type PuMapStatus = 'Verified' | 'Review' | 'Pending' | 'Rejected'
 
 export interface PollingUnit {
   id: string
@@ -71,6 +76,7 @@ export interface Report {
   verifiedNarrative?: string
   verifiedBy?: string
   verifiedAt?: string
+  linkedResultId?: string
 }
 
 export interface TimelineEntry {
@@ -106,6 +112,7 @@ export interface Agent {
   status: AgentStatus
   lastReportAt: string | null
   reportsCount: number
+  electionId?: string
 }
 
 export interface EvidenceItem {
@@ -160,6 +167,9 @@ export interface AuditEntry {
   recordId: string
   oldValue: string
   newValue: string
+  category?: string
+  ip?: string
+  resource?: string
 }
 
 export interface ActivityItem {
@@ -182,4 +192,89 @@ export interface ElectionSettings {
   incidentEscalationMinutes: number
   contactEmail: string
   contactPhone: string
+}
+
+export interface Election {
+  id: string
+  name: string
+  code: string
+  status: ElectionStatus
+  startDate: string
+  endDate: string
+  coverageStates: string[]
+  puTarget: number
+  puReported: number
+  description: string
+}
+
+export interface Party {
+  id: string
+  abbrev: string
+  name: string
+  color: string
+  isPrimary: boolean
+}
+
+export interface Candidate {
+  id: string
+  electionId: string
+  partyId: string
+  name: string
+  role: string
+  stateScope: string
+}
+
+export interface ForecastState {
+  stateId: string
+  stateName: string
+  leadParty: string
+  leadProbability: number
+  low: number
+  high: number
+  sampleSize: number
+}
+
+export interface ForecastModel {
+  id: string
+  name: string
+  version: string
+  trainedAt: string
+  snapshot: string
+  description: string
+  states: ForecastState[]
+}
+
+export interface AnomalyItem {
+  id: string
+  score: number
+  type: string
+  location: GeoPath
+  summary: string
+  detectedAt: string
+  relatedResultId?: string
+  relatedReportId?: string
+  status: AnomalyReviewStatus
+}
+
+export interface DemoControls {
+  syncIntervalSec: number
+  defaultElectionId: string
+  mfaEnabled: boolean
+  sessionTimeoutMin: number
+  aiForecastEnabled: boolean
+  aiAnomalyEnabled: boolean
+  aiAssistantEnabled: boolean
+  emailNotifications: boolean
+  autoBackup: boolean
+  lastBackupAt: string
+  geoScopeStateId: string
+}
+
+export interface PartyVoteShare {
+  partyId: string
+  abbrev: string
+  name: string
+  color: string
+  votes: number
+  share: number
 }

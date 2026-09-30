@@ -1,4 +1,4 @@
-import { CheckCircle2, Clock, AlertTriangle, XCircle, HelpCircle, Circle, Radio, Pause } from 'lucide-react'
+import { CheckCircle2, Clock, AlertTriangle, XCircle, HelpCircle, Circle, Radio, Pause, Swords } from 'lucide-react'
 import type { VerificationStatus, IncidentStatus, AgentStatus } from '../../types'
 
 const vMap: Record<VerificationStatus, { cls: string; Icon: typeof CheckCircle2 }> = {
@@ -7,6 +7,7 @@ const vMap: Record<VerificationStatus, { cls: string; Icon: typeof CheckCircle2 
   Verified: { cls: 'badge-success', Icon: CheckCircle2 },
   Rejected: { cls: 'badge-danger', Icon: XCircle },
   'Needs Clarification': { cls: 'badge-warning', Icon: HelpCircle },
+  Contested: { cls: 'badge-danger', Icon: Swords },
 }
 
 const iMap: Record<IncidentStatus, { cls: string; Icon: typeof CheckCircle2 }> = {

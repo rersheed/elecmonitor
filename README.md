@@ -81,8 +81,12 @@ GeoJSON assets live in `public/geo/` (`nw-states.geojson`, `nw-lgas.geojson`, `n
 |------|--------|
 | `/` | Overview (Situation Room) |
 | `/geography` … | Drill-down State → LGA → Ward |
-| `/reports`, `/incidents`, `/verification`, `/agents`, `/results`, `/evidence`, `/analytics` | Ops modules |
-| `/users`, `/audit`, `/settings`, `/login` | Admin / demo login |
+| `/maps` | Ward status map layers (Verified / Review / Pending / Rejected) |
+| `/reports` | Field reports + exports catalog (CSV / Excel / PDF) |
+| `/incidents`, `/verification`, `/results`, `/evidence` | Ops modules (verification has Approve/Reject/Contest) |
+| `/agents`, `/elections`, `/parties` | Management (agent assign, multi-election, APC + opponents) |
+| `/analytics`, `/ai` | Intelligence (forecast, anomalies, NL assistant) |
+| `/users`, `/audit`, `/settings`, `/login` | Governance / system |
 
 Base path: `/elecmonitor/` (Vite `base` + `BrowserRouter` basename). `dist/404.html` copies `index.html` for GitHub Pages SPA fallback.
 
