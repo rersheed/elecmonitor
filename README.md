@@ -31,7 +31,7 @@ rm -rf docs && cp -a dist docs && touch docs/.nojekyll
 | City Boy Movement | `public/city-boy-logo.png` | Campaign wordmark (cap + glasses) |
 | APC (All Progressives Congress) | `public/apc-logo.png` | [Wikipedia APC logo](https://en.wikipedia.org/wiki/All_Progressives_Congress) (`upload.wikimedia.org/.../All_Progressives_Congress_logo.png`) |
 
-UI palette follows APC flag colours: **green, white, sky blue, red** on a dense dark Situation Room chrome. Product names remain **ElecMonitor** / **Election Situation Room**.
+UI palette uses exact brand colours **#39a453** (green), **#5cc3e7** (blue), **#e52b32** (red); white `#ffffff` for text contrast only; brown `#976532` as a light accent. Dense dark Situation Room chrome. Product names remain **ElecMonitor** / **Election Situation Room**.
 
 ## Geography scope
 

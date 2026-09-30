@@ -25,14 +25,14 @@ function coverageForLga(lgaId: string) {
 }
 
 function stateFill(cov: number, selected: boolean) {
-  if (selected) return '#2563eb'
+  if (selected) return '#5cc3e7'
   // APC green scale
   const g = Math.round(80 + cov * 100)
   return `rgb(16, ${g}, 60)`
 }
 
 function lgaFill(cov: number, selected: boolean) {
-  if (selected) return '#dc2626'
+  if (selected) return '#e52b32'
   const g = Math.round(90 + cov * 90)
   return `rgb(20, ${g}, 90)`
 }
@@ -125,7 +125,7 @@ export function GeoMap({ selectedStateId, selectedLgaId, onSelectState, onSelect
               return {
                 fillColor: stateFill(cov, selected),
                 weight: selected ? 2.5 : 1.2,
-                color: selected ? '#93c5fd' : '#86efac',
+                color: selected ? '#5cc3e7' : '#39a453',
                 fillOpacity: 0.72,
               }
             }}
@@ -160,7 +160,7 @@ export function GeoMap({ selectedStateId, selectedLgaId, onSelectState, onSelect
               return {
                 fillColor: lgaFill(cov, selected),
                 weight: selected ? 2.5 : 1,
-                color: selected ? '#fecaca' : '#4ade80',
+                color: selected ? '#e52b32' : '#39a453',
                 fillOpacity: 0.65,
               }
             }}
@@ -197,8 +197,8 @@ export function GeoMap({ selectedStateId, selectedLgaId, onSelectState, onSelect
               center={[lat, lon]}
               radius={selected ? 6 : 4}
               pathOptions={{
-                color: '#f87171',
-                fillColor: '#ef4444',
+                color: '#e52b32',
+                fillColor: '#e52b32',
                 fillOpacity: 0.85,
                 weight: 1,
               }}
@@ -223,17 +223,17 @@ export function GeoMap({ selectedStateId, selectedLgaId, onSelectState, onSelect
             : 'North-West · 7 states'}
         </div>
         <div className="legend-row">
-          <span className="swatch" style={{ background: '#14532d' }} /> Low reports
+          <span className="swatch" style={{ background: '#1a5c2e' }} /> Low reports
         </div>
         <div className="legend-row">
-          <span className="swatch" style={{ background: '#16a34a' }} /> Higher volume
+          <span className="swatch" style={{ background: '#39a453' }} /> Higher volume
         </div>
         <div className="legend-row">
-          <span className="swatch" style={{ background: selectedStateId ? '#dc2626' : '#2563eb' }} /> Selected
+          <span className="swatch" style={{ background: selectedStateId ? '#e52b32' : '#5cc3e7' }} /> Selected
         </div>
         {selectedStateId && (
           <div className="legend-row">
-            <span className="swatch round" style={{ background: '#ef4444' }} /> Ward points
+            <span className="swatch round" style={{ background: '#e52b32' }} /> Ward points
           </div>
         )}
         <div className="legend-hint">Click region to filter · syncs with table</div>

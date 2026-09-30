@@ -82,7 +82,6 @@ export function Sidebar({ open, onNavigate }: { open: boolean; onNavigate?: () =
       <div className="sidebar-footer">
         <div className="brand-strip" aria-hidden>
           <span className="c green" />
-          <span className="c white" />
           <span className="c blue" />
           <span className="c red" />
         </div>

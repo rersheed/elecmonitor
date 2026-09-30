@@ -16,7 +16,7 @@ import {
 import { reports, incidents, geography } from '../data'
 import { useDataFreshness } from '../hooks/useDataFreshness'
 
-const COLORS = ['#3b82f6', '#22c55e', '#f59e0b', '#ef4444', '#38bdf8', '#a78bfa']
+const COLORS = ['#39a453', '#5cc3e7', '#e52b32', '#976532', '#39a453', '#5cc3e7']
 
 export function Analytics() {
   const { label } = useDataFreshness()
@@ -69,13 +69,13 @@ export function Analytics() {
           <div style={{ width: '100%', height: 240 }}>
             <ResponsiveContainer>
               <LineChart data={coverageOverTime}>
-                <CartesianGrid stroke="#1e293b" />
-                <XAxis dataKey="time" stroke="#64748b" fontSize={11} />
-                <YAxis stroke="#64748b" fontSize={11} unit="%" />
+                <CartesianGrid stroke="#1a3d30" />
+                <XAxis dataKey="time" stroke="#6b8578" fontSize={11} />
+                <YAxis stroke="#6b8578" fontSize={11} unit="%" />
                 <Tooltip
-                  contentStyle={{ background: '#111827', border: '1px solid #334155' }}
+                  contentStyle={{ background: '#0b1a14', border: '1px solid #2d5a45' }}
                 />
-                <Line type="monotone" dataKey="coverage" stroke="#3b82f6" strokeWidth={2} name="Coverage %" />
+                <Line type="monotone" dataKey="coverage" stroke="#39a453" strokeWidth={2} name="Coverage %" />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -90,14 +90,14 @@ export function Analytics() {
           <div style={{ width: '100%', height: 240 }}>
             <ResponsiveContainer>
               <BarChart data={byCategory}>
-                <CartesianGrid stroke="#1e293b" />
-                <XAxis dataKey="name" stroke="#64748b" fontSize={10} />
-                <YAxis stroke="#64748b" fontSize={11} />
+                <CartesianGrid stroke="#1a3d30" />
+                <XAxis dataKey="name" stroke="#6b8578" fontSize={10} />
+                <YAxis stroke="#6b8578" fontSize={11} />
                 <Tooltip
-                  contentStyle={{ background: '#111827', border: '1px solid #334155' }}
+                  contentStyle={{ background: '#0b1a14', border: '1px solid #2d5a45' }}
                   formatter={(v, _n, item) => [v, (item?.payload as { full?: string })?.full || '']}
                 />
-                <Bar dataKey="value" fill="#3b82f6" name="Reports" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="value" fill="#5cc3e7" name="Reports" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -115,12 +115,12 @@ export function Analytics() {
           <div style={{ width: '100%', height: 240 }}>
             <ResponsiveContainer>
               <BarChart data={byState}>
-                <CartesianGrid stroke="#1e293b" />
-                <XAxis dataKey="name" stroke="#64748b" fontSize={11} />
-                <YAxis stroke="#64748b" fontSize={11} />
-                <Tooltip contentStyle={{ background: '#111827', border: '1px solid #334155' }} />
-                <Bar dataKey="reports" fill="#22c55e" name="Reports" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="incidents" fill="#f59e0b" name="Incidents" radius={[4, 4, 0, 0]} />
+                <CartesianGrid stroke="#1a3d30" />
+                <XAxis dataKey="name" stroke="#6b8578" fontSize={11} />
+                <YAxis stroke="#6b8578" fontSize={11} />
+                <Tooltip contentStyle={{ background: '#0b1a14', border: '1px solid #2d5a45' }} />
+                <Bar dataKey="reports" fill="#39a453" name="Reports" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="incidents" fill="#e52b32" name="Incidents" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -140,7 +140,7 @@ export function Analytics() {
                     <Cell key={i} fill={COLORS[i % COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip contentStyle={{ background: '#111827', border: '1px solid #334155' }} />
+                <Tooltip contentStyle={{ background: '#0b1a14', border: '1px solid #2d5a45' }} />
               </PieChart>
             </ResponsiveContainer>
           </div>
