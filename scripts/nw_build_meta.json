@@ -1,0 +1,56 @@
+{
+  "scope": "North-West Nigeria only",
+  "states": [
+    "Kaduna",
+    "Kano",
+    "Katsina",
+    "Jigawa",
+    "Kebbi",
+    "Sokoto",
+    "Zamfara"
+  ],
+  "counts": {
+    "states": 7,
+    "lgas": 186,
+    "wards": 2003,
+    "pus": 29380,
+    "wards_with_coords": 1881
+  },
+  "sources": {
+    "electoral": "afeibukun/nigerian-state-lgas-wards-polling-units (INEC-derived State\u2192LGA\u2192Ward\u2192PU)",
+    "ward_coords": "open-admin-data/nigeria-administrative-divisions (CC-BY-4.0)",
+    "boundaries": "geoBoundaries NGA ADM1/ADM2 simplified (gbOpen)",
+    "apc_logo": "Wikipedia: All Progressives Congress logo (en.wikipedia.org)",
+    "city_boy_logo": "Campaign-provided City Boy Movement wordmark"
+  },
+  "gaps": {
+    "unmatched_lga_geojson": [
+      [
+        "Jigawa",
+        "Biriniwa"
+      ],
+      [
+        "Kano",
+        "Nassarawa"
+      ],
+      [
+        "Kebbi",
+        "Aleiro"
+      ],
+      [
+        "Kebbi",
+        "Bagudu"
+      ],
+      [
+        "Kano",
+        "Dambatta"
+      ],
+      [
+        "Jigawa",
+        "Kiri Kasama"
+      ]
+    ],
+    "wards_without_coords": 122,
+    "pu_coordinates": "Polling units have names only (no lat/lon in source); ward centroids used for points."
+  }
+}

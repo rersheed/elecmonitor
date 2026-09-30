@@ -46,7 +46,7 @@ export function Overview() {
         <div>
           <h1>Situation Room</h1>
           <p className="subtitle">
-            ElecMonitor overview · {label} · Live clock {fmtClock(now)} WAT
+            North-West Situation Room · City Boy · APC · {label} · {fmtClock(now)} WAT
           </p>
         </div>
       </div>

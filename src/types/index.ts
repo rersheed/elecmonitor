@@ -29,6 +29,8 @@ export interface Ward {
   name: string
   code: string
   pollingUnits: PollingUnit[]
+  lat?: number
+  lon?: number
 }
 
 export interface LGA {

@@ -12,7 +12,6 @@ import {
   UserCog,
   ScrollText,
   Settings,
-  Radar,
 } from 'lucide-react'
 
 const primary = [
@@ -33,16 +32,20 @@ const admin = [
   { to: '/settings', label: 'Settings', icon: Settings },
 ]
 
+const base = import.meta.env.BASE_URL
+
 export function Sidebar({ open, onNavigate }: { open: boolean; onNavigate?: () => void }) {
   return (
     <aside className={`sidebar ${open ? 'open' : ''}`} aria-label="Primary">
       <div className="sidebar-brand">
-        <div className="logo" aria-hidden>
-          <Radar size={18} />
+        <div className="brand-logos" aria-hidden>
+          <img src={`${base}city-boy-logo.png`} alt="" className="logo-mark city-boy" />
+          <img src={`${base}apc-logo.png`} alt="" className="logo-mark apc" />
         </div>
         <div className="brand-text">
           <div className="product">ElecMonitor</div>
           <div className="workspace">Election Situation Room</div>
+          <div className="brand-tag">City Boy · APC · North-West</div>
         </div>
       </div>
       <nav style={{ overflow: 'auto', flex: 1 }}>
@@ -76,7 +79,15 @@ export function Sidebar({ open, onNavigate }: { open: boolean; onNavigate?: () =
           ))}
         </div>
       </nav>
-      <div className="sidebar-footer">ElecMonitor demo · Demo data only</div>
+      <div className="sidebar-footer">
+        <div className="brand-strip" aria-hidden>
+          <span className="c green" />
+          <span className="c white" />
+          <span className="c blue" />
+          <span className="c red" />
+        </div>
+        ElecMonitor demo · NW Situation Room
+      </div>
     </aside>
   )
 }

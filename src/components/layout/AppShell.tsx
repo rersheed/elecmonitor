@@ -13,7 +13,7 @@ export function AppShell() {
         <Outlet />
       </main>
       <footer className="app-footer">
-        <span>ElecMonitor · Election Situation Room</span>
+        <span>ElecMonitor · Election Situation Room · City Boy · APC · North-West</span>
         <span>Export label: ElecMonitor Demo · Not for operational use</span>
       </footer>
       {open && (

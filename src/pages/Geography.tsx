@@ -53,12 +53,12 @@ export function GeographyIndex() {
         <div>
           <h1>Geography</h1>
           <p className="subtitle">
-            Nigeria hierarchy · {counts.states} states · {counts.lgas} LGAs · {counts.wards} wards ·{' '}
+            North-West only · {counts.states} states · {counts.lgas} LGAs · {counts.wards} wards ·{' '}
             {counts.pus} polling units · {label}
           </p>
         </div>
       </div>
-      <Breadcrumbs items={[{ label: 'Nigeria' }]} />
+      <Breadcrumbs items={[{ label: 'North-West Nigeria' }]} />
       <div className="geo-layout">
         <div className="stack">
           <GeoMap
@@ -123,7 +123,7 @@ export function GeographyDetail() {
   const ward = stateId && lgaId && wardId ? getWard(stateId, lgaId, wardId) : undefined
 
   const crumbs = useMemo(() => {
-    const items: { label: string; to?: string }[] = [{ label: 'Nigeria', to: '/geography' }]
+    const items: { label: string; to?: string }[] = [{ label: 'North-West', to: '/geography' }]
     if (state) items.push({ label: state.name, to: `/geography/${state.id}` })
     if (lga && state) items.push({ label: lga.name, to: `/geography/${state.id}/${lga.id}` })
     if (ward) items.push({ label: ward.name })
