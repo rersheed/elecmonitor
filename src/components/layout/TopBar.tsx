@@ -7,6 +7,8 @@ import { useDemoState } from '../../context/DemoState'
 import { elections } from '../../data/elections'
 import { geography } from '../../data/geography'
 
+const base = import.meta.env.BASE_URL
+
 export function TopBar({ onMenu }: { onMenu: () => void }) {
   const { controls, setControls, activeElectionId, setActiveElectionId } = useDemoState()
   const { label } = useDataFreshness(controls.syncIntervalSec * 100)
@@ -18,6 +20,10 @@ export function TopBar({ onMenu }: { onMenu: () => void }) {
         <Menu size={18} />
       </button>
       <style>{`@media (max-width:960px){#menu-btn{display:inline-flex!important}}`}</style>
+      <div className="topbar-brands" aria-label="Brand logos">
+        <img src={`${base}city-boy-logo.png`} alt="City Boy Movement" className="topbar-logo city-boy" />
+        <img src={`${base}apc-logo.png`} alt="All Progressives Congress" className="topbar-logo apc" />
+      </div>
       <GlobalSearch />
       <div className="topbar-meta">
         <label className="topbar-select" title="Active election">
