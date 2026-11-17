@@ -15,8 +15,8 @@ import { fmtClock, fmtRelative, fmtDateTime } from '../utils/format'
 import {
   incidents,
   activityFeed,
-  allPollingUnits,
   geography,
+  countHierarchy,
 } from '../data'
 import { useDemoState } from '../context/DemoState'
 import { shortPath } from '../data/geography'
@@ -26,7 +26,7 @@ export function Overview() {
   const { reports, agents, controls } = useDemoState()
   const { label } = useDataFreshness(controls.syncIntervalSec * 100)
   const now = useLiveClock()
-  const totalPUs = allPollingUnits().length
+  const totalPUs = countHierarchy().pus
   const reportingLocations = new Set(reports.map((r) => r.location.puId || r.location.wardId)).size
   const yetToReport = Math.max(0, totalPUs - reportingLocations)
   const awaiting = reports.filter(
@@ -46,7 +46,7 @@ export function Overview() {
         <div>
           <h1>Situation Room</h1>
           <p className="subtitle">
-            North-West Situation Room · City Boy · APC · {label} · {fmtClock(now)} WAT
+            City Boy Movement North West · Election Situation Room · {label} · {fmtClock(now)} WAT
           </p>
         </div>
       </div>

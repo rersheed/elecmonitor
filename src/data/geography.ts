@@ -29,9 +29,7 @@ export function allWards() {
   const wards: { state: State; lga: LGA; ward: Ward }[] = []
   for (const state of geography) {
     for (const lga of state.lgas) {
-      for (const ward of lga.wards) {
-        wards.push({ state, lga, ward })
-      }
+      for (const ward of lga.wards) wards.push({ state, lga, ward })
     }
   }
   return wards
@@ -42,9 +40,7 @@ export function allPollingUnits() {
   for (const state of geography) {
     for (const lga of state.lgas) {
       for (const ward of lga.wards) {
-        for (const pu of ward.pollingUnits) {
-          pus.push({ state, lga, ward, pu })
-        }
+        for (const pu of ward.pollingUnits) pus.push({ state, lga, ward, pu })
       }
     }
   }
@@ -54,9 +50,9 @@ export function allPollingUnits() {
 let _counts: { states: number; lgas: number; wards: number; pus: number } | null = null
 export function countHierarchy() {
   if (_counts) return _counts
-  let lgas = 0
-  let wards = 0
-  let pus = 0
+  let lgas = 0,
+    wards = 0,
+    pus = 0
   for (const s of geography) {
     lgas += s.lgas.length
     for (const l of s.lgas) {
@@ -68,6 +64,19 @@ export function countHierarchy() {
   return _counts
 }
 
-/** @deprecated SVG placeholders removed — Leaflet GeoJSON is used instead */
+export function stateHierarchyCounts(stateId: string) {
+  const s = getState(stateId)
+  if (!s) return { lgas: 0, wards: 0, pus: 0 }
+  let wards = 0,
+    pus = 0
+  for (const l of s.lgas) {
+    wards += l.wards.length
+    for (const w of l.wards) pus += w.pollingUnits.length
+  }
+  return { lgas: s.lgas.length, wards, pus }
+}
+
+export const NW_STATE_ORDER = ['kd', 'kn', 'kt', 'jg', 'kb', 'so', 'za'] as const
+
 export const statePositions: Record<string, { x: number; y: number; w: number; h: number }> = {}
 export const lgaOffsets: Record<string, { dx: number; dy: number }> = {}

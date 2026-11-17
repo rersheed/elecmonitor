@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { DemoStateProvider } from './context/DemoState'
+import { LiveDataProvider } from './context/LiveDataProvider'
 import { AppShell } from './components/layout/AppShell'
 import { Overview } from './pages/Overview'
 import { GeographyIndex, GeographyDetail } from './pages/Geography'
@@ -23,35 +24,37 @@ import { NotFound } from './pages/NotFound'
 export default function App() {
   return (
     <DemoStateProvider>
-      <BrowserRouter basename="/elecmonitor">
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route element={<AppShell />}>
-            <Route index element={<Overview />} />
-            <Route path="geography" element={<GeographyIndex />} />
-            <Route path="geography/:stateId" element={<GeographyDetail />} />
-            <Route path="geography/:stateId/:lgaId" element={<GeographyDetail />} />
-            <Route path="geography/:stateId/:lgaId/:wardId" element={<GeographyDetail />} />
-            <Route path="maps" element={<Maps />} />
-            <Route path="reports" element={<ReportsList />} />
-            <Route path="reports/:id" element={<ReportDetail />} />
-            <Route path="incidents" element={<IncidentsList />} />
-            <Route path="incidents/:id" element={<IncidentDetail />} />
-            <Route path="verification" element={<Verification />} />
-            <Route path="agents" element={<Agents />} />
-            <Route path="elections" element={<Elections />} />
-            <Route path="parties" element={<Parties />} />
-            <Route path="results" element={<Results />} />
-            <Route path="evidence" element={<Evidence />} />
-            <Route path="analytics" element={<Analytics />} />
-            <Route path="ai" element={<AI />} />
-            <Route path="users" element={<Users />} />
-            <Route path="audit" element={<Audit />} />
-            <Route path="settings" element={<Settings />} />
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <LiveDataProvider>
+        <BrowserRouter basename="/elecmonitor">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route element={<AppShell />}>
+              <Route index element={<Overview />} />
+              <Route path="geography" element={<GeographyIndex />} />
+              <Route path="geography/:stateId" element={<GeographyDetail />} />
+              <Route path="geography/:stateId/:lgaId" element={<GeographyDetail />} />
+              <Route path="geography/:stateId/:lgaId/:wardId" element={<GeographyDetail />} />
+              <Route path="maps" element={<Maps />} />
+              <Route path="reports" element={<ReportsList />} />
+              <Route path="reports/:id" element={<ReportDetail />} />
+              <Route path="incidents" element={<IncidentsList />} />
+              <Route path="incidents/:id" element={<IncidentDetail />} />
+              <Route path="verification" element={<Verification />} />
+              <Route path="agents" element={<Agents />} />
+              <Route path="elections" element={<Elections />} />
+              <Route path="parties" element={<Parties />} />
+              <Route path="results" element={<Results />} />
+              <Route path="evidence" element={<Evidence />} />
+              <Route path="analytics" element={<Analytics />} />
+              <Route path="ai" element={<AI />} />
+              <Route path="users" element={<Users />} />
+              <Route path="audit" element={<Audit />} />
+              <Route path="settings" element={<Settings />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </LiveDataProvider>
     </DemoStateProvider>
   )
 }

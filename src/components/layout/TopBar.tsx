@@ -1,22 +1,31 @@
 import { Menu } from 'lucide-react'
 import { GlobalSearch } from '../ui/GlobalSearch'
-import { useDataFreshness, useLiveClock } from '../../hooks/useDataFreshness'
+import { useLiveClock } from '../../hooks/useDataFreshness'
 import { fmtClock } from '../../utils/format'
 import { Link } from 'react-router-dom'
 import { useDemoState } from '../../context/DemoState'
 import { elections } from '../../data/elections'
 import { geography } from '../../data/geography'
+import { useLiveData } from '../../context/LiveDataProvider'
+import { ConnectionBadge } from '../analytics/ConnectionBadge'
 
 const base = import.meta.env.BASE_URL
 
 export function TopBar({ onMenu }: { onMenu: () => void }) {
   const { controls, setControls, activeElectionId, setActiveElectionId } = useDemoState()
-  const { label } = useDataFreshness(controls.syncIntervalSec * 100)
+  const live = useLiveData()
   const now = useLiveClock()
 
   return (
     <header className="topbar">
-      <button type="button" className="btn btn-sm btn-ghost" onClick={onMenu} aria-label="Toggle navigation" style={{ display: 'none' }} id="menu-btn">
+      <button
+        type="button"
+        className="btn btn-sm btn-ghost"
+        onClick={onMenu}
+        aria-label="Toggle navigation"
+        style={{ display: 'none' }}
+        id="menu-btn"
+      >
         <Menu size={18} />
       </button>
       <style>{`@media (max-width:960px){#menu-btn{display:inline-flex!important}}`}</style>
@@ -24,8 +33,17 @@ export function TopBar({ onMenu }: { onMenu: () => void }) {
         <img src={`${base}city-boy-logo.png`} alt="City Boy Movement" className="topbar-logo city-boy" />
         <img src={`${base}apc-logo.png`} alt="All Progressives Congress" className="topbar-logo apc" />
       </div>
+      <div className="topbar-titles">
+        <div className="topbar-org">City Boy Movement North West</div>
+        <div className="topbar-product">Election Situation Room</div>
+      </div>
       <GlobalSearch />
       <div className="topbar-meta">
+        <ConnectionBadge
+          status={live.connectionStatus}
+          mode={live.mode}
+          lastDataAt={live.lastDataAt}
+        />
         <label className="topbar-select" title="Active election">
           <span className="sr-only">Election</span>
           <select
@@ -55,9 +73,6 @@ export function TopBar({ onMenu }: { onMenu: () => void }) {
             ))}
           </select>
         </label>
-        <span>
-          <span className="freshness-dot" aria-hidden /> {label}
-        </span>
         <span className="mono">{fmtClock(now)} WAT</span>
         <Link to="/login" className="btn btn-sm">
           Demo user

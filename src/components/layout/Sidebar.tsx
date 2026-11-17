@@ -9,22 +9,30 @@ import {
   Users,
   BarChart3,
   Image,
-  LineChart,
   UserCog,
   ScrollText,
   Settings,
   Brain,
   Vote,
   Flag,
+  Activity,
 } from 'lucide-react'
 
-const groups: { label: string; items: { to: string; label: string; icon: typeof LayoutDashboard; end?: boolean }[] }[] = [
+const groups: {
+  label: string
+  items: { to: string; label: string; icon: typeof LayoutDashboard; end?: boolean }[]
+}[] = [
   {
-    label: 'Operations',
+    label: 'Overview',
     items: [
-      { to: '/', label: 'Overview', icon: LayoutDashboard, end: true },
-      { to: '/geography', label: 'Geography', icon: Map },
+      { to: '/', label: 'Situation Room', icon: LayoutDashboard, end: true },
+      { to: '/analytics', label: 'Live Analytics', icon: Activity },
       { to: '/maps', label: 'Maps', icon: MapPinned },
+    ],
+  },
+  {
+    label: 'Field Operations',
+    items: [
       { to: '/reports', label: 'Reports', icon: FileText },
       { to: '/incidents', label: 'Incidents', icon: AlertTriangle },
       { to: '/verification', label: 'Verification', icon: ShieldCheck },
@@ -33,30 +41,32 @@ const groups: { label: string; items: { to: string; label: string; icon: typeof 
     ],
   },
   {
-    label: 'Management',
+    label: 'Network',
     items: [
       { to: '/agents', label: 'Agents', icon: Users },
+      { to: '/geography', label: 'Geography', icon: Map },
+    ],
+  },
+  {
+    label: 'Management',
+    items: [
       { to: '/elections', label: 'Elections', icon: Vote },
       { to: '/parties', label: 'Parties', icon: Flag },
+      { to: '/users', label: 'Users', icon: UserCog },
     ],
   },
   {
     label: 'Intelligence',
     items: [
-      { to: '/analytics', label: 'Analytics', icon: LineChart },
-      { to: '/ai', label: 'AI', icon: Brain },
-    ],
-  },
-  {
-    label: 'Governance',
-    items: [
-      { to: '/users', label: 'Users', icon: UserCog },
-      { to: '/audit', label: 'Audit', icon: ScrollText },
+      { to: '/ai', label: 'AI Assistant', icon: Brain },
     ],
   },
   {
     label: 'System',
-    items: [{ to: '/settings', label: 'Settings', icon: Settings }],
+    items: [
+      { to: '/audit', label: 'Audit Log', icon: ScrollText },
+      { to: '/settings', label: 'Settings', icon: Settings },
+    ],
   },
 ]
 
@@ -71,9 +81,9 @@ export function Sidebar({ open, onNavigate }: { open: boolean; onNavigate?: () =
           <img src={`${base}apc-logo.png`} alt="" className="logo-mark apc" />
         </div>
         <div className="brand-text">
-          <div className="product">ElecMonitor</div>
-          <div className="workspace">Election Situation Room</div>
-          <div className="brand-tag">City Boy · APC · North-West</div>
+          <div className="product">CITY BOY MOVEMENT</div>
+          <div className="workspace">NORTH WEST</div>
+          <div className="brand-tag">ElecMonitor · Situation Room</div>
         </div>
       </div>
       <nav style={{ overflow: 'auto', flex: 1 }}>
@@ -101,7 +111,7 @@ export function Sidebar({ open, onNavigate }: { open: boolean; onNavigate?: () =
           <span className="c blue" />
           <span className="c red" />
         </div>
-        ElecMonitor demo · NW Situation Room
+        City Boy Movement North West
       </div>
     </aside>
   )

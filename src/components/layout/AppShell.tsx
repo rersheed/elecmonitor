@@ -13,8 +13,8 @@ export function AppShell() {
         <Outlet />
       </main>
       <footer className="app-footer">
-        <span>ElecMonitor · Election Situation Room · City Boy · APC · North-West</span>
-        <span>Export label: ElecMonitor Demo · Not for operational use</span>
+        <span>City Boy Movement North West · Election Monitoring System</span>
+        <span>ElecMonitor · Internal monitoring data · Not official INEC results</span>
       </footer>
       {open && (
         <div

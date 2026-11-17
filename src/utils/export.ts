@@ -47,7 +47,7 @@ export function openPrintablePdf(title: string, lines: string[]) {
     </style></head><body>
     <button onclick="window.print()">Print / Save as PDF</button>
     <h1>${escapeHtml(title)}</h1>
-    <div class="meta">ElecMonitor Demo · North-West · generated ${new Date().toLocaleString('en-GB', { timeZone: 'Africa/Lagos' })} WAT</div>
+    <div class="meta">CITY BOY MOVEMENT NORTH WEST · Election Situation Room · Internal Monitoring Data · generated ${new Date().toLocaleString('en-GB', { timeZone: 'Africa/Lagos' })} WAT</div>
     ${body}
     </body></html>`)
   w.document.close()
